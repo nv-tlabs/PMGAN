@@ -6,7 +6,7 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>Polymorphic-GAN</title>
-        <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v5.12.1/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
@@ -17,7 +17,19 @@
         <link href="css/styles.css" rel="stylesheet" />
     </head>
     <body id="page-top">
-
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <a class="navbar-brand" href="https://www.nvidia.com">
+            <img src="assets/nvidia.svg"  height="30" class="d-inline-block align-top" alt="">
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+              <div class="navbar-nav">
+                  <a class="nav-link active" href="https://nv-tlabs.github.io/">Toronto AI Lab <span class="sr-only">(current)</span></a>
+            </div>
+          </div>
+        </nav>
         <!-- Masthead-->
         <header class="masthead">
             <div class="container masthead-container">
@@ -220,7 +232,7 @@
                         <p class="text-muted text-lg-left">
                             With the learned morph maps, we can do zero-shot segmentation transfer.
                             We first run an off-the-shelf segmentation network  to get a mask for the image from the parent domain and then
-                            apply the morph operation directly on the image to get the corresponding segmentation masks for other domains.
+                            apply the warping operation with morph maps directly on the segmentation mask to get the corresponding masks for other domains.
                         </p>
                     </div>
                     <div class="col-lg-8 text-center">
@@ -245,17 +257,17 @@
 
                     </div>
                     <div class="col-lg-4 text-lg-left">
-                         <br><br><br><br><br>
+                         <br><br><br><br>
                         <h4 class="section-heading ">
                         Image Editing <br>
                         (Rendering Layer Swap)
                     </h4>
                         <br>
                         <p class="text-muted text-lg-left">
-                            Polymorphic-GAN unsupervisedly learns to disentangle the geometric differences from texture differences between domains.
+                            Polymorphic-GAN learns to disentangle the geometric differences from texture differences between domains in an unsupervised fashion.
                             This allows us to selectively mix-and-match morph maps and rendering layers.
                             The left figure shows how we can do novel image editing by only changing the texture of images while keeping the shapes the same.
-
+                            This is done by fixing the morph maps while interpolating the weights of rendering layers of different domains.
                         </p>
                     </div>
 
@@ -270,15 +282,18 @@
                 <div class="row">
 
                     <div class="col-lg-4 text-lg-left">
-                         <br><br><br><br><br>
+                         <br><br><br>
                         <h4 class="section-heading ">
                         Image Editing <br>
                         (Morph Map Swap)
                     </h4>
                         <br>
                         <p class="text-muted text-lg-left">
-                            We can exploit the domain-specific geometries learned in Polymorphic-GAN's morph maps to modify images from one domain to another, for example from SUV to Sports Car.
-                            The interpolated images on the right show how our model learned the geometric characteristics of each domain well.
+                            We can exploit the domain-specific geometries learned in Polymorphic-GAN's morph maps to modify images from one domain to another, for example, from SUV to Sports Car.
+                            Specifically, we interpolate the morph maps of two domains while fixing the rendering layers the same.
+                            This lets us see the geometric characteristics of each domain learned by Polymorphic-GAN.
+                            The bottom-left image shows how the shape of a human's face is transformed into a cat-shaped face using the morph map from the Cat domain.
+
                         </p>
                     </div>
                     <div class="col-lg-8 text-center">
@@ -290,8 +305,12 @@
                     </div>
 
                 </div>
-
+                <p class="text-muted text-lg-left" style="font-size: 12px">
+                    <br/><br/>
+                    [1] Yujun Shen and Bolei Zhou. Closed-Form Factorization of Latent Semantics in GANs. CVPR (2022)
+                </p>
             </div>
+
         </section>
 
 
