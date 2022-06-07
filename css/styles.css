@@ -420,6 +420,17 @@ h6, .h6 {
   line-height: 1.2;
 }
 
+.car_crop {
+        /* width: 200px;
+        height: 150px; */
+        overflow: hidden;
+    }
+
+.car_crop img {
+    /* width: 400px;
+    height: 300px; */
+    margin: -20px 0 -20px 0;
+}
 hr {
   margin-top: 1rem;
   margin-bottom: 1rem;

@@ -193,13 +193,13 @@
                         <img src="./assets/img/edit_face3.gif" alt="animated" width="100%"/>
                         <img src="./assets/img/edit_face4.gif" alt="animated" width="100%"/>
                         <img src="./assets/img/edit_face1.gif" alt="animated" width="100%"/>
-                        <img src="./assets/img/edit_car1.gif" alt="animated" width="100%"/>
-                        <img src="./assets/img/edit_car2.gif" alt="animated" width="100%"/>
-                        <img src="./assets/img/edit_car3.gif" alt="animated" width="100%"/>
+                        <div class="car_crop"><img src="./assets/img/edit_car1.gif" alt="animated" width="100%"/></div>
+                        <div class="car_crop"><img src="./assets/img/edit_car2.gif" alt="animated" width="100%"/></div>
+                        <div class="car_crop"><img src="./assets/img/edit_car3.gif" alt="animated" width="100%"/></div>
 
                     </div>
                     <div class="col-lg-4 text-lg-left">
-                         <br><br><br><br><br><br><br><br>
+                         <br><br><br><br><br><br><br>
                         <h4 class="section-heading ">
                         Aligned Samples & <br>
                         Edit Transfer
@@ -210,6 +210,10 @@
                             We can see how samples are aligned in many attributes, including pose and lighting conditions.
                             Furthermore, as Polymorphic-GAN inherits useful properties of StyleGAN, we can use existing algorithms, such as SeFa [1], to find edit vectors in Polymorphic-GAN's latent space.
                             Here, we visualize how edit vectors can be successfully broadcasted to all domains by gradually applying the discovered edit vectors to each row.
+                        </p>
+                        <p class="text-muted text-lg-left" style="font-size: 12px">
+                            <br/><br/>
+                            [1] Yujun Shen and Bolei Zhou. Closed-Form Factorization of Latent Semantics in GANs. CVPR (2022)
                         </p>
                     </div>
 
@@ -233,10 +237,24 @@
                             With the learned morph maps, we can do zero-shot segmentation transfer.
                             We first run an off-the-shelf segmentation network  to get a mask for the image from the parent domain and then
                             apply the warping operation with morph maps directly on the segmentation mask to get the corresponding masks for other domains.
+
+                        </p>
+                        <br><br><br><br><br><br><br><br>
+                        <p class="text-muted text-lg-left">
+                            On the right, we show interpolation between two random samples.
+                            The segmentation masks are transferred from the first column on which we run a segmentation network.
+                            For faces, as animals' noses are always mapped several pixels below the humans' noses, we add a fixed offset value to the morph maps for animals (See Appendix C.4 for details).
+
+
                         </p>
                     </div>
                     <div class="col-lg-8 text-center">
                         <img src="./assets/img/seg_transfer.png" width="100%"/>
+                        <br><br>
+                        <div class="car_crop"><img src="./assets/img/interp_car.gif" width="99.7%"/></div>
+                        <div class="car_crop"><img src="./assets/img/interp_car_mask.gif" width="99.7%"/></div>
+                        <div ><img src="./assets/img/interp_face.gif" width="99.7%"/></div>
+                        <div ><img src="./assets/img/interp_face_mask.gif" width="99.7%"/></div>
 
                     </div>
 
@@ -305,10 +323,7 @@
                     </div>
 
                 </div>
-                <p class="text-muted text-lg-left" style="font-size: 12px">
-                    <br/><br/>
-                    [1] Yujun Shen and Bolei Zhou. Closed-Form Factorization of Latent Semantics in GANs. CVPR (2022)
-                </p>
+
             </div>
 
         </section>
